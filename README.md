@@ -50,7 +50,3 @@ A documentação completa dos endpoints e integração com a OCI pode ser consul
 - **Integração com OCI:** API REST com autenticação via API Key.
 - **CSS/Estilização:** Variáveis CSS para manter a identidade visual definida.
 
-## Estrutura do Projeto
-
-A organização do repositório poderá seguir a seguinte estrutura:
-

@@ -3,7 +3,7 @@
 
 ### Instalation and runtime
 
-1. Add the .env file with the current 
+1. Make a new the `.env` file with the current template
 
 ```
 PORT=3333  # Base port for the application
@@ -23,7 +23,7 @@ PGADMIN_DEFAULT_EMAIL=email@email.com
 PGADMIN_DEFAULT_PASSWORD=very-secure-password
 ```
 
-2. Just run the docker
+2. Run everything with Docker.
 
     ``` sh
     docker compose up -d

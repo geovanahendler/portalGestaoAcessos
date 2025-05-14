@@ -7,7 +7,7 @@ services:
     ports:
       - "${DB_PORT}:${DB_PORT}"
     networks:
-      - api-vendas-2024
+      - backend
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
@@ -18,7 +18,7 @@ services:
     ports:
       - "${PORT}:${PORT}"
     networks:
-      - api-vendas-2024
+      - backend
     depends_on:
       - postgres
     volumes:
@@ -30,7 +30,7 @@ services:
     ports:
       - "8090:80"
     networks:
-      - api-vendas-2024
+      - backend
     depends_on:
       - postgres
     environment:

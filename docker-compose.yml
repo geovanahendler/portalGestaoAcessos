@@ -1,0 +1,49 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_PASSWORD: ${DB_PASS}
+      POSTGRES_USER: ${DB_USER}
+    ports:
+      - "${DB_PORT}:${DB_PORT}"
+    networks:
+      - api-vendas-2024
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  api-rest:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "${PORT}:${PORT}"
+    networks:
+      - api-vendas-2024
+    depends_on:
+      - postgres
+    volumes:
+      - ./:/var/www
+    command: 'sh -c ./docker/start.sh'
+
+  pgadmin:
+    image: dpage/pgadmin4
+    ports:
+      - "8090:80"
+    networks:
+      - api-vendas-2024
+    depends_on:
+      - postgres
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=${PGADMIN_DEFAULT_EMAIL}
+      - PGADMIN_DEFAULT_PASSWORD=${PGADMIN_DEFAULT_PASSWORD}
+      - PGADMIN_CONFIG_SERVER_MODE=False
+      - PGADMIN_CONFIG_MASTER_PASSWORD_REQUIRED=False
+    volumes:
+      - ./docker/pgAdmin/servers.json:/pgadmin4/servers.json
+      
+
+volumes:
+  postgres_data:
+
+networks:
+  api-vendas-2024:
